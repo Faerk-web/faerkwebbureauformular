@@ -409,11 +409,14 @@ $customerSubject = 'Tak for din forespørgsel – Færk Webbureau';
 $agencyHeaders   = buildHeaders($fromName, $fromAddress, $email);
 $customerHeaders = buildHeaders($fromName, $fromAddress, $agencyEmail);
 
-$agencyOk = mail($agencyEmail, $agencySubject, $agencyBody, $agencyHeaders);
-mail($email, $customerSubject, $customerBody, $customerHeaders);
+$agencyOk   = mail($agencyEmail, $agencySubject, $agencyBody, $agencyHeaders);
+$customerOk = mail($email, $customerSubject, $customerBody, $customerHeaders);
 
 if ($agencyOk) {
-    echo respond(true, 'Forespørgsel sendt.');
+    $message = $customerOk
+        ? 'Forespørgsel sendt.'
+        : 'Forespørgsel modtaget, men bekræftelsesmailen kunne ikke sendes. Vi kontakter dig inden for 24 timer.';
+    echo respond(true, $message);
 } else {
     http_response_code(500);
     echo respond(false, 'Der opstod en fejl ved afsendelse. Kontakt os venligst direkte på kontakt@faerkwebbureau.dk.');

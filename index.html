@@ -1467,7 +1467,7 @@
               <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
                 <div class="dropzone__icon">📁</div>
                 <div class="dropzone__title">Træk filer hertil eller <span class="dropzone__link">klik for at vælge</span></div>
-                <div class="dropzone__subtitle">JPG eller PNG – maks. 10 MB pr. fil</div>
+                <div class="dropzone__subtitle">JPG, JPEG eller PNG – maks. 10 MB pr. fil</div>
               </div>
               <input type="file" id="fileInput" name="files[]" accept=".jpg,.jpeg,.png" multiple />
               <div class="file-list" id="fileList"></div>
@@ -1917,7 +1917,7 @@ function handleFiles(files) {
 
 function renderFileItem(file) {
   const list = document.getElementById('fileList');
-  const id = 'fi_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+  const id = 'fi_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
   const item = document.createElement('div');
   item.className = 'file-item';
   item.id = id;
