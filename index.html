@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Få et gratis, uforpligtende tilbud på din nye hjemmeside fra Færk Webbureau." />
+  <title>Få et tilbud – Færk Webbureau</title>
+  <style>
+    /* =====================================================
+       DESIGN TOKENS
+    ===================================================== */
+    :root {
+      --navy:          #0f172a;
+      --navy-light:    #1e293b;
+      --blue:          #2563eb;
+      --blue-hover:    #1d4ed8;
+      --blue-light:    #eff6ff;
+      --green:         #059669;
+      --green-light:   #ecfdf5;
+      --red:           #dc2626;
+      --red-light:     #fef2f2;
+      --amber:         #d97706;
+      --gray-50:       #f8fafc;
+      --gray-100:      #f1f5f9;
+      --gray-200:      #e2e8f0;
+      --gray-300:      #cbd5e1;
+      --gray-400:      #94a3b8;
+      --gray-500:      #64748b;
+      --gray-600:      #475569;
+      --gray-700:      #334155;
+      --gray-800:      #1e293b;
+      --white:         #ffffff;
+      --radius-sm:     6px;
+      --radius:        10px;
+      --radius-lg:     16px;
+      --shadow-sm:     0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow:        0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+      --shadow-lg:     0 10px 30px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+      --transition:    0.2s ease;
+    }
+
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--gray-50);
+      color: var(--navy);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    button { cursor: pointer; font-family: inherit; }
+    input, select, textarea { font-family: inherit; }
+    a { color: var(--blue); text-decoration: none; }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 14px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .site-header__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--navy);
+    }
+    .logo span { color: var(--blue); }
+    .header-badge {
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* =====================================================
+       LAYOUT
+    ===================================================== */
+    .app-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .app-layout { grid-template-columns: 1fr; padding-bottom: 100px; }
+    }
+
+    /* =====================================================
+       PRICE BOX
+    ===================================================== */
+    .price-box {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      position: sticky;
+      top: 80px;
+      box-shadow: var(--shadow-lg);
+    }
+    .price-box__label {
+      font-size: .8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gray-400);
+      margin-bottom: 6px;
+    }
+    .price-box__amount {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 4px;
+      transition: color .3s;
+    }
+    .price-box__note {
+      font-size: .78rem;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+    .price-box__breakdown {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .82rem;
+      color: var(--gray-300);
+    }
+    .price-row.base { color: var(--white); font-weight: 600; }
+    .price-row .value { color: var(--white); }
+    .price-box__divider { border-color: rgba(255,255,255,.15); margin: 4px 0; }
+    .price-box__total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--white);
+      padding-top: 4px;
+    }
+    .price-box__reassure {
+      margin-top: 16px;
+      background: rgba(255,255,255,.07);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: .78rem;
+      color: var(--gray-400);
+      text-align: center;
+    }
+    /* Mobile price bar */
+    .price-bar-mobile {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0; right: 0;
+      background: var(--navy);
+      color: var(--white);
+      padding: 10px 20px;
+      z-index: 200;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.2);
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price-bar-mobile__label { font-size: .8rem; color: var(--gray-400); }
+    .price-bar-mobile__amount { font-size: 1.25rem; font-weight: 800; }
+    @media (max-width: 900px) {
+      .price-box { display: none; }
+      .price-bar-mobile { display: flex; }
+    }
+
+    /* =====================================================
+       WIZARD CARD
+    ===================================================== */
+    .wizard-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Progress */
+    .progress-section {
+      padding: 20px 28px 0;
+      background: var(--white);
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .progress-meta__step {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .progress-meta__pct {
+      font-size: .78rem;
+      color: var(--gray-500);
+    }
+    .progress-bar-wrap {
+      height: 6px;
+      background: var(--gray-100);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue) 0%, #60a5fa 100%);
+      border-radius: 99px;
+      transition: width .4s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Step dots */
+    .step-dots {
+      display: flex;
+      gap: 6px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--gray-100);
+      overflow-x: auto;
+    }
+    .step-dot {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 700;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      transition: all var(--transition);
+      position: relative;
+    }
+    .step-dot.active {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.2);
+    }
+    .step-dot.completed {
+      background: var(--green);
+      color: var(--white);
+    }
+    .step-dot.completed::after {
+      content: '✓';
+      font-size: .65rem;
+    }
+    .step-dot:not(.completed) .dot-num { display: inline; }
+    .step-dot.completed .dot-num { display: none; }
+
+    /* =====================================================
+       STEPS
+    ===================================================== */
+    .step { display: none; }
+    .step.active {
+      display: block;
+      animation: fadeSlide .3s ease-out;
+    }
+    .step.slide-back.active { animation: fadeSlideBack .3s ease-out; }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeSlideBack {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .step-header {
+      padding: 28px 28px 0;
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: .75rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: .05em;
+    }
+    .step-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .step-header p {
+      color: var(--gray-500);
+      font-size: .9rem;
+    }
+
+    .step-body { padding: 24px 28px; }
+
+    /* =====================================================
+       FORM ELEMENTS
+    ===================================================== */
+    .form-group { margin-bottom: 20px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+    .required { color: var(--red); margin-left: 2px; }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: .92rem;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .form-input.invalid,
+    .form-select.invalid,
+    .form-textarea.invalid {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(220,38,38,.1);
+    }
+    .form-textarea { resize: vertical; min-height: 90px; }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+
+    .form-hint {
+      font-size: .78rem;
+      color: var(--gray-500);
+      margin-top: 5px;
+    }
+    .form-error {
+      font-size: .78rem;
+      color: var(--red);
+      margin-top: 5px;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+    .form-error.visible { display: flex; }
+
+    /* Radio & Checkbox groups */
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-group.inline,
+    .checkbox-group.inline {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .radio-item,
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      padding: 12px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      transition: border-color var(--transition), background var(--transition);
+      user-select: none;
+    }
+    .radio-item:hover,
+    .checkbox-item:hover {
+      border-color: var(--blue);
+      background: var(--blue-light);
+    }
+    .radio-item input,
+    .checkbox-item input { display: none; }
+    .radio-custom,
+    .checkbox-custom {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--gray-300);
+      border-radius: 50%;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .checkbox-custom { border-radius: 4px; }
+    .radio-custom::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--white);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .checkbox-custom::after {
+      content: '✓';
+      font-size: .7rem;
+      color: var(--white);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .radio-item:has(input:checked),
+    .checkbox-item:has(input:checked) {
+      border-color: var(--blue);
+      background: var(--blue-light);
+    }
+    .radio-item:has(input:checked) .radio-custom,
+    .checkbox-item:has(input:checked) .checkbox-custom {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+    .radio-item:has(input:checked) .radio-custom::after,
+    .checkbox-item:has(input:checked) .checkbox-custom::after { opacity: 1; }
+
+    .radio-label,
+    .checkbox-label {
+      font-size: .9rem;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+    .radio-desc,
+    .checkbox-desc {
+      font-size: .78rem;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+
+    /* Chips (inline style tags) */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 999px;
+      font-size: .83rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all var(--transition);
+      user-select: none;
+    }
+    .chip input { display: none; }
+    .chip:has(input:checked) {
+      border-color: var(--blue);
+      background: var(--blue-light);
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .chip:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* Section dividers */
+    .section-title {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gray-100);
+      margin: 20px 0;
+    }
+
+    /* =====================================================
+       ADD-ONS (Step 7)
+    ===================================================== */
+    .addon-grid { display: flex; flex-direction: column; gap: 10px; }
+    .addon-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      transition: border-color var(--transition), background var(--transition);
+      cursor: pointer;
+    }
+    .addon-item.selected {
+      border-color: var(--blue);
+      background: var(--blue-light);
+    }
+    .addon-check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gray-300);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      color: var(--white);
+      transition: all var(--transition);
+    }
+    .addon-item.selected .addon-check {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+    .addon-check::after { content: ''; }
+    .addon-item.selected .addon-check::after { content: '✓'; }
+    .addon-info { flex: 1; min-width: 0; }
+    .addon-name { font-size: .88rem; font-weight: 600; color: var(--navy); }
+    .addon-desc { font-size: .78rem; color: var(--gray-500); margin-top: 1px; }
+    .addon-price {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    /* Numeric addon */
+    .addon-item.addon-numeric { cursor: default; }
+    .addon-item.addon-numeric:hover { border-color: var(--gray-200); background: transparent; }
+    .addon-counter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .counter-btn {
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--gray-600);
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .counter-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+    .counter-input {
+      width: 44px;
+      height: 30px;
+      text-align: center;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--navy);
+      outline: none;
+    }
+    .counter-input:focus { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(37,99,235,.12); }
+
+    /* =====================================================
+       FILE UPLOAD
+    ===================================================== */
+    .dropzone {
+      border: 2px dashed var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 40px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .dropzone:hover, .dropzone.dragover {
+      border-color: var(--blue);
+      background: var(--blue-light);
+    }
+    .dropzone__icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .dropzone__title { font-size: 1rem; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
+    .dropzone__subtitle { font-size: .82rem; color: var(--gray-500); }
+    .dropzone__link { color: var(--blue); font-weight: 600; }
+    #fileInput { display: none; }
+
+    .file-list { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: .85rem;
+    }
+    .file-item__icon { font-size: 1.1rem; }
+    .file-item__name { flex: 1; color: var(--gray-700); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-item__size { color: var(--gray-500); font-size: .78rem; white-space: nowrap; }
+    .file-item__remove {
+      width: 22px; height: 22px;
+      border: none; background: none;
+      color: var(--gray-400);
+      font-size: .9rem;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color var(--transition), background var(--transition);
+    }
+    .file-item__remove:hover { color: var(--red); background: var(--red-light); }
+
+    /* =====================================================
+       SUMMARY (Step 8)
+    ===================================================== */
+    .summary-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .summary-card h3 {
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .88rem;
+      color: var(--gray-600);
+      padding: 4px 0;
+      gap: 12px;
+    }
+    .summary-row .label { font-weight: 500; color: var(--gray-500); flex-shrink: 0; }
+    .summary-row .value { color: var(--navy); font-weight: 500; text-align: right; }
+    .summary-price-box {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .summary-price-box .label { font-size: .85rem; color: var(--gray-400); }
+    .summary-price-box .amount { font-size: 1.5rem; font-weight: 800; }
+
+    /* Consent */
+    .consent-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+    .consent-item:has(input:checked) { border-color: var(--blue); background: var(--blue-light); }
+    .consent-item input { display: none; }
+    .consent-check {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      border: 2px solid var(--gray-300);
+      border-radius: 4px;
+      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem;
+      color: var(--white);
+      transition: all var(--transition);
+    }
+    .consent-item:has(input:checked) .consent-check { background: var(--blue); border-color: var(--blue); }
+    .consent-text { font-size: .85rem; color: var(--gray-700); line-height: 1.5; }
+
+    /* =====================================================
+       NAVIGATION BUTTONS
+    ===================================================== */
+    .step-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px 28px;
+      border-top: 1px solid var(--gray-100);
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-size: .9rem;
+      font-weight: 600;
+      border: none;
+      transition: all var(--transition);
+    }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+    .btn-back {
+      background: var(--white);
+      color: var(--gray-600);
+      border: 1.5px solid var(--gray-200);
+    }
+    .btn-back:hover:not(:disabled) { border-color: var(--gray-300); background: var(--gray-50); }
+    .btn-next {
+      background: var(--blue);
+      color: var(--white);
+      margin-left: auto;
+    }
+    .btn-next:hover:not(:disabled) { background: var(--blue-hover); }
+    .btn-submit {
+      background: var(--green);
+      color: var(--white);
+      margin-left: auto;
+      padding: 13px 28px;
+      font-size: .95rem;
+    }
+    .btn-submit:hover:not(:disabled) { background: #047857; }
+
+    .btn-spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    .btn.loading .btn-spinner { display: block; }
+    .btn.loading .btn-text { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =====================================================
+       INFO BOXES
+    ===================================================== */
+    .info-box {
+      background: var(--blue-light);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: .82rem;
+      color: #1d4ed8;
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .info-box__icon { flex-shrink: 0; }
+
+    /* =====================================================
+       SUCCESS SCREEN
+    ===================================================== */
+    .success-screen {
+      display: none;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .success-screen.visible { display: block; animation: fadeSlide .5s ease-out; }
+    .success-icon {
+      width: 80px; height: 80px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2rem;
+    }
+    .success-screen h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .success-screen p { color: var(--gray-500); font-size: .95rem; margin-bottom: 24px; }
+    .success-steps {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 24px 0;
+      text-align: left;
+    }
+    .success-steps h3 { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-400); margin-bottom: 16px; }
+    .next-step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+    .next-step:last-child { margin-bottom: 0; }
+    .next-step__num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .next-step__text { font-size: .88rem; color: var(--gray-600); line-height: 1.5; }
+    .next-step__text strong { color: var(--navy); }
+    .success-email-note {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: .82rem;
+      color: var(--gray-600);
+    }
+
+    /* =====================================================
+       GENERAL ERROR MESSAGE
+    ===================================================== */
+    .alert {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: .88rem;
+      margin: 0 28px 16px;
+      display: none;
+    }
+    .alert.visible { display: flex; gap: 10px; align-items: flex-start; }
+    .alert-error { background: var(--red-light); color: var(--red); border: 1px solid #fecaca; }
+    .alert-success { background: var(--green-light); color: var(--green); border: 1px solid #a7f3d0; }
+
+    /* =====================================================
+       RESPONSIVE FIXES
+    ===================================================== */
+    @media (max-width: 560px) {
+      .step-header { padding: 20px 18px 0; }
+      .step-body { padding: 18px 18px; }
+      .step-footer { padding: 16px 18px 20px; }
+      .progress-section { padding: 16px 18px 0; }
+      .step-header h2 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="logo">Færk <span>Webbureau</span></div>
+    <div class="header-badge">Gratis, uforpligtende tilbud</div>
+  </div>
+</header>
+
+<!-- SUCCESS SCREEN -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">✅</div>
+  <h2>Tak for din forespørgsel!</h2>
+  <p>Vi har modtaget dine oplysninger og vender tilbage inden for 24 timer.<br>
+     Tjek din indbakke – der er sendt en bekræftelse til din e-mailadresse.</p>
+
+  <div class="success-steps">
+    <h3>Hvad sker der nu?</h3>
+    <div class="next-step">
+      <div class="next-step__num">1</div>
+      <div class="next-step__text"><strong>Vi gennemgår din forespørgsel</strong><br>Inden for 24 timer kigger en af vores konsulenter din besked igennem.</div>
+    </div>
+    <div class="next-step">
+      <div class="next-step__num">2</div>
+      <div class="next-step__text"><strong>Vi kontakter dig</strong><br>Vi ringer eller skriver for at afstemme ønsker og besvare eventuelle spørgsmål.</div>
+    </div>
+    <div class="next-step">
+      <div class="next-step__num">3</div>
+      <div class="next-step__text"><strong>Du modtager et skræddersyet tilbud</strong><br>Baseret på din forespørgsel sender vi et detaljeret og uforpligtende tilbud.</div>
+    </div>
+  </div>
+
+  <div class="success-email-note">
+    📧 En kopi af din forespørgsel er sendt til din e-mailadresse. Husk at tjekke din spam-mappe, hvis du ikke kan finde den.
+  </div>
+</div>
+
+<!-- APP LAYOUT -->
+<div class="app-layout" id="appLayout">
+
+  <!-- LEFT: WIZARD -->
+  <div>
+    <div class="wizard-card">
+
+      <!-- PROGRESS -->
+      <div class="progress-section">
+        <div class="progress-meta">
+          <span class="progress-meta__step">Trin <span id="stepNum">1</span> af 8</span>
+          <span class="progress-meta__pct" id="progressPct">12%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-fill" id="progressFill" style="width:12.5%"></div>
+        </div>
+        <div class="step-dots" id="stepDots"></div>
+      </div>
+
+      <!-- GLOBAL ERROR -->
+      <div class="alert alert-error" id="globalAlert" role="alert"></div>
+
+      <!-- ==================== FORM ==================== -->
+      <form id="wizardForm" novalidate>
+
+        <!-- ======= STEP 1: KONTAKTINFO ======= -->
+        <div class="step active" data-step="1">
+          <div class="step-header">
+            <div class="step-badge">01</div>
+            <h2>Kontaktinfo</h2>
+            <p>Lad os starte med at lære dig at kende, så vi kan komme i kontakt med dig.</p>
+          </div>
+          <div class="step-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Fulde navn <span class="required">*</span></label>
+                <input class="form-input" type="text" id="name" name="name" placeholder="Jens Hansen" autocomplete="name" required />
+                <div class="form-error" id="nameError">⚠ Dette felt er påkrævet</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company">Virksomhedsnavn <span class="required">*</span></label>
+                <input class="form-input" type="text" id="company" name="company" placeholder="Hansen ApS" autocomplete="organization" required />
+                <div class="form-error" id="companyError">⚠ Dette felt er påkrævet</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="email">E-mailadresse <span class="required">*</span></label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="jens@virksomhed.dk" autocomplete="email" required />
+                <div class="form-error" id="emailError">⚠ Indtast en gyldig e-mailadresse</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Telefonnummer <span class="required">*</span></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78" autocomplete="tel" required />
+                <div class="form-error" id="phoneError">⚠ Dette felt er påkrævet</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="existing_url">Evt. nuværende hjemmeside</label>
+              <input class="form-input" type="url" id="existing_url" name="existing_url" placeholder="https://www.dinside.dk" autocomplete="url" />
+              <div class="form-hint">Skriv din nuværende hjemmeside, hvis du har en (valgfrit)</div>
+            </div>
+          </div>
+          <div class="step-footer">
+            <div></div>
+            <button type="button" class="btn btn-next" onclick="nextStep()">
+              <span class="btn-text">Næste →</span>
+              <span class="btn-spinner"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 2: OM VIRKSOMHEDEN ======= -->
+        <div class="step" data-step="2">
+          <div class="step-header">
+            <div class="step-badge">02</div>
+            <h2>Om virksomheden</h2>
+            <p>Hjælp os med at forstå din virksomhed og dine mål, så vi kan skræddersy den perfekte løsning.</p>
+          </div>
+          <div class="step-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="business_type">Virksomhedstype <span class="required">*</span></label>
+                <select class="form-select" id="business_type" name="business_type" required>
+                  <option value="">Vælg type…</option>
+                  <option>Enkeltmandsvirksomhed</option>
+                  <option>ApS</option>
+                  <option>A/S</option>
+                  <option>Forening / NGO</option>
+                  <option>Offentlig institution</option>
+                  <option>Andet</option>
+                </select>
+                <div class="form-error" id="business_typeError">⚠ Vælg venligst en virksomhedstype</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="industry">Branche <span class="required">*</span></label>
+                <input class="form-input" type="text" id="industry" name="industry" placeholder="F.eks. detailhandel, rådgivning, byggeri…" required />
+                <div class="form-error" id="industryError">⚠ Dette felt er påkrævet</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="services">Hvad sælger eller tilbyder din virksomhed? <span class="required">*</span></label>
+              <textarea class="form-textarea" id="services" name="services" placeholder="Beskriv dine produkter og/eller ydelser kort…" required></textarea>
+              <div class="form-error" id="servicesError">⚠ Dette felt er påkrævet</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="target_audience">Primær målgruppe</label>
+              <textarea class="form-textarea" id="target_audience" name="target_audience" placeholder="F.eks. private forbrugere i alderen 30-50 år, eller B2B-kunder i byggebranchen…"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="goal">Hvad er det vigtigste mål med den nye hjemmeside? <span class="required">*</span></label>
+              <textarea class="form-textarea" id="goal" name="goal" placeholder="F.eks. flere leads, online salg, bedre synlighed, troværdighed…" required></textarea>
+              <div class="form-error" id="goalError">⚠ Dette felt er påkrævet</div>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-next" onclick="nextStep()">Næste →</button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 3: NUVÆRENDE HJEMMESIDE ======= -->
+        <div class="step" data-step="3">
+          <div class="step-header">
+            <div class="step-badge">03</div>
+            <h2>Nuværende hjemmeside</h2>
+            <p>Fortæl os om din nuværende online tilstedeværelse og hvad du ønsker forandret.</p>
+          </div>
+          <div class="step-body">
+            <div class="form-group">
+              <label class="form-label">Har du en hjemmeside i dag? <span class="required">*</span></label>
+              <div class="radio-group inline">
+                <label class="radio-item">
+                  <input type="radio" name="has_website" value="ja" id="has_website_ja" onchange="toggleWebsiteFields()" />
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">Ja, jeg har en</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="has_website" value="nej" id="has_website_nej" onchange="toggleWebsiteFields()" />
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">Nej, det er nyt</span>
+                </label>
+              </div>
+              <div class="form-error" id="has_websiteError">⚠ Vælg venligst et svar</div>
+            </div>
+            <div id="websiteGroup" style="display:none">
+              <div class="form-group">
+                <label class="form-label" for="website_url">Nuværende hjemmeside-URL</label>
+                <input class="form-input" type="url" id="website_url" name="website_url" placeholder="https://www.dinside.dk" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="what_works">Hvad fungerer godt ved din nuværende side?</label>
+                <textarea class="form-textarea" id="what_works" name="what_works" placeholder="F.eks. design, struktur, indhold…"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="improvements">Hvad ønsker du forbedret eller ændret?</label>
+              <textarea class="form-textarea" id="improvements" name="improvements" placeholder="F.eks. hastighed, mobilvenlig, moderne design, bedre navigation…"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inspiration">Links til hjemmesider du kan lide</label>
+              <input class="form-input" type="text" id="inspiration" name="inspiration" placeholder="F.eks. https://www.eksempel.dk, https://www.inspiration.com" />
+              <div class="form-hint">Giver os et godt billede af din æstetiske smag og præferencer</div>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-next" onclick="nextStep()">Næste →</button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 4: OMFANG & FUNKTIONER ======= -->
+        <div class="step" data-step="4">
+          <div class="step-header">
+            <div class="step-badge">04</div>
+            <h2>Omfang &amp; funktioner</h2>
+            <p>Hvor stor skal siden være, og hvilke funktioner er vigtige for dig?</p>
+          </div>
+          <div class="step-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="num_pages">Antal undersider <span class="required">*</span></label>
+                <select class="form-select" id="num_pages" name="num_pages" required>
+                  <option value="">Vælg antal…</option>
+                  <option value="1-5">1–5 sider</option>
+                  <option value="6-10">6–10 sider</option>
+                  <option value="11-20">11–20 sider</option>
+                  <option value="20+">Mere end 20 sider</option>
+                  <option value="ved_ikke">Ved ikke endnu</option>
+                </select>
+                <div class="form-error" id="num_pagesError">⚠ Vælg venligst antal sider</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="languages">Sprog på hjemmesiden</label>
+                <input class="form-input" type="text" id="languages" name="languages" placeholder="F.eks. Dansk, Engelsk" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Har du brug for en webshop? <span class="required">*</span></label>
+              <div class="radio-group inline">
+                <label class="radio-item">
+                  <input type="radio" name="needs_webshop" value="ja" />
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">Ja</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="needs_webshop" value="nej" />
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">Nej</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="needs_webshop" value="maaske" />
+                  <span class="radio-custom"></span>
+                  <span class="radio-label">Måske</span>
+                </label>
+              </div>
+              <div class="form-error" id="needs_webshopError">⚠ Vælg venligst et svar</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ønskede funktioner</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="features[]" value="Kontaktformular" /><span>📋 Kontaktformular</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Gallerifunktion" /><span>🖼 Galleri</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Blog" /><span>✍️ Blog</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Søgefunktion" /><span>🔍 Søgefunktion</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Login/brugerområde" /><span>🔐 Login</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Flersproget" /><span>🌐 Flersproget</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Prisberegner" /><span>🧮 Prisberegner</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Chatfunktion" /><span>💬 Chat</span></label>
+                <label class="chip"><input type="checkbox" name="features[]" value="Pop-ups" /><span>📢 Pop-ups</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-next" onclick="nextStep()">Næste →</button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 5: DESIGN & INDHOLD ======= -->
+        <div class="step" data-step="5">
+          <div class="step-header">
+            <div class="step-badge">05</div>
+            <h2>Design &amp; indhold</h2>
+            <p>Lad os finde det visuelle udtryk og afklare, hvem der sørger for indholdet.</p>
+          </div>
+          <div class="step-body">
+            <div class="form-group">
+              <label class="form-label" for="colors">Farver du kan lide</label>
+              <input class="form-input" type="text" id="colors" name="colors" placeholder="F.eks. marine blå, hvid og guld – eller link til en farvepalette" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ønsket stil / udtryk</label>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Minimalistisk" /><span>Minimalistisk</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Moderne" /><span>Moderne</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Klassisk" /><span>Klassisk</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Legende" /><span>Legende</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Professionel" /><span>Professionel</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Luksuriøs" /><span>Luksuriøs</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Skandinavisk" /><span>Skandinavisk</span></label>
+                <label class="chip"><input type="checkbox" name="design_style[]" value="Fed og farverig" /><span>Fed &amp; farverig</span></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Har du et logo? <span class="required">*</span></label>
+              <div class="radio-group inline">
+                <label class="radio-item"><input type="radio" name="has_logo" value="ja_klar" /><span class="radio-custom"></span><span class="radio-label">Ja, klar til brug</span></label>
+                <label class="radio-item"><input type="radio" name="has_logo" value="ja_gammelt" /><span class="radio-custom"></span><span class="radio-label">Ja, men skal opdateres</span></label>
+                <label class="radio-item"><input type="radio" name="has_logo" value="nej" /><span class="radio-custom"></span><span class="radio-label">Nej, jeg mangler et</span></label>
+              </div>
+              <div class="form-error" id="has_logoError">⚠ Vælg venligst et svar</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hvem leverer tekst og indhold? <span class="required">*</span></label>
+              <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="content_provider" value="mig_selv" /><span class="radio-custom"></span><div><span class="radio-label">Mig selv</span><div class="radio-desc">Jeg leverer alt tekst og materiale</div></div></label>
+                <label class="radio-item"><input type="radio" name="content_provider" value="faerk" /><span class="radio-custom"></span><div><span class="radio-label">Færk Webbureau</span><div class="radio-desc">I skriver tekst og sørger for professionelt indhold</div></div></label>
+                <label class="radio-item"><input type="radio" name="content_provider" value="begge" /><span class="radio-custom"></span><div><span class="radio-label">Begge parter</span><div class="radio-desc">Vi gør det i samarbejde</div></div></label>
+              </div>
+              <div class="form-error" id="content_providerError">⚠ Vælg venligst et svar</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Har du billeder klar til hjemmesiden?</label>
+              <div class="radio-group inline">
+                <label class="radio-item"><input type="radio" name="has_images" value="ja" /><span class="radio-custom"></span><span class="radio-label">Ja</span></label>
+                <label class="radio-item"><input type="radio" name="has_images" value="delvist" /><span class="radio-custom"></span><span class="radio-label">Delvist</span></label>
+                <label class="radio-item"><input type="radio" name="has_images" value="nej" /><span class="radio-custom"></span><span class="radio-label">Nej</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-next" onclick="nextStep()">Næste →</button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 6: TEKNIK & DRIFT ======= -->
+        <div class="step" data-step="6">
+          <div class="step-header">
+            <div class="step-badge">06</div>
+            <h2>Teknik &amp; drift</h2>
+            <p>Lad os finde ud af de tekniske rammer for din nye hjemmeside.</p>
+          </div>
+          <div class="step-body">
+            <div class="form-group">
+              <label class="form-label">Har du et domænenavn? <span class="required">*</span></label>
+              <div class="radio-group inline">
+                <label class="radio-item"><input type="radio" name="has_domain" value="ja" onchange="toggleDomainField()" /><span class="radio-custom"></span><span class="radio-label">Ja</span></label>
+                <label class="radio-item"><input type="radio" name="has_domain" value="nej" onchange="toggleDomainField()" /><span class="radio-custom"></span><span class="radio-label">Nej</span></label>
+                <label class="radio-item"><input type="radio" name="has_domain" value="hjaelp" onchange="toggleDomainField()" /><span class="radio-custom"></span><span class="radio-label">Brug for hjælp</span></label>
+              </div>
+              <div class="form-error" id="has_domainError">⚠ Vælg venligst et svar</div>
+            </div>
+            <div id="domainNameGroup" style="display:none">
+              <div class="form-group">
+                <label class="form-label" for="domain_name">Domænenavn</label>
+                <input class="form-input" type="text" id="domain_name" name="domain_name" placeholder="F.eks. minvirksomhed.dk" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Har du hosting? <span class="required">*</span></label>
+              <div class="radio-group inline">
+                <label class="radio-item"><input type="radio" name="has_hosting" value="ja" /><span class="radio-custom"></span><span class="radio-label">Ja</span></label>
+                <label class="radio-item"><input type="radio" name="has_hosting" value="nej" /><span class="radio-custom"></span><span class="radio-label">Nej</span></label>
+                <label class="radio-item"><input type="radio" name="has_hosting" value="hjaelp" /><span class="radio-custom"></span><span class="radio-label">Brug for hjælp</span></label>
+              </div>
+              <div class="form-error" id="has_hostingError">⚠ Vælg venligst et svar</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cms_preference">Foretrukket CMS <span class="required">*</span></label>
+                <select class="form-select" id="cms_preference" name="cms_preference" required>
+                  <option value="">Vælg CMS…</option>
+                  <option value="WordPress">WordPress</option>
+                  <option value="Shopify">Shopify</option>
+                  <option value="Webflow">Webflow</option>
+                  <option value="Custom">Custom / skræddersyet</option>
+                  <option value="ingen_preference">Ingen præference</option>
+                </select>
+                <div class="form-error" id="cms_preferenceError">⚠ Vælg venligst et CMS</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="budget">Budget (DKK inkl. moms)</label>
+                <select class="form-select" id="budget" name="budget">
+                  <option value="">Vælg budgetramme…</option>
+                  <option value="under_10k">Under 10.000 kr.</option>
+                  <option value="10k_25k">10.000–25.000 kr.</option>
+                  <option value="25k_50k">25.000–50.000 kr.</option>
+                  <option value="50k_plus">Over 50.000 kr.</option>
+                  <option value="ved_ikke">Ved ikke endnu</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ønsker du løbende vedligeholdelse &amp; support?</label>
+              <div class="radio-group inline">
+                <label class="radio-item"><input type="radio" name="needs_maintenance" value="ja" /><span class="radio-custom"></span><span class="radio-label">Ja</span></label>
+                <label class="radio-item"><input type="radio" name="needs_maintenance" value="nej" /><span class="radio-custom"></span><span class="radio-label">Nej</span></label>
+                <label class="radio-item"><input type="radio" name="needs_maintenance" value="maaske" /><span class="radio-custom"></span><span class="radio-label">Måske</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-next" onclick="nextStep()">Næste →</button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 7: TILKØB & DEADLINE ======= -->
+        <div class="step" data-step="7">
+          <div class="step-header">
+            <div class="step-badge">07</div>
+            <h2>Tilkøb &amp; deadline</h2>
+            <p>Vælg de tilkøb der passer til dit projekt. Prisen opdateres automatisk.</p>
+          </div>
+          <div class="step-body">
+
+            <p class="section-title">Indhold &amp; tekst</p>
+            <div class="addon-grid">
+              <!-- Extra pages -->
+              <div class="addon-item addon-numeric">
+                <div class="addon-info">
+                  <div class="addon-name">Ekstra sider</div>
+                  <div class="addon-desc">Ekstra sider ud over din valgte pakke</div>
+                </div>
+                <div class="addon-counter">
+                  <button type="button" class="counter-btn" onclick="changeCounter('addon_extra_pages',-1)">−</button>
+                  <input class="counter-input" type="number" id="addon_extra_pages" name="addon_extra_pages" value="0" min="0" max="100" oninput="updatePrice()" />
+                  <button type="button" class="counter-btn" onclick="changeCounter('addon_extra_pages',1)">+</button>
+                </div>
+                <div class="addon-price">+500 kr./side</div>
+              </div>
+              <!-- Blog setup -->
+              <div class="addon-item" id="ai_blog_setup" onclick="toggleAddon('addon_blog_setup','ai_blog_setup')">
+                <div class="addon-check" id="ac_blog_setup"></div>
+                <div class="addon-info">
+                  <div class="addon-name">Blogopsætning</div>
+                  <div class="addon-desc">Komplet opsætning af en professionel blogsektion</div>
+                </div>
+                <div class="addon-price">+1.000 kr.</div>
+                <input type="checkbox" id="addon_blog_setup" name="addon_blog_setup" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <!-- Blog posts -->
+              <div class="addon-item" id="ai_blog_posts" onclick="toggleAddon('addon_blog_posts','ai_blog_posts')">
+                <div class="addon-check" id="ac_blog_posts"></div>
+                <div class="addon-info">
+                  <div class="addon-name">3 blogindlæg</div>
+                  <div class="addon-desc">Vi skriver 3 professionelle og SEO-optimerede blogindlæg</div>
+                </div>
+                <div class="addon-price">+1.200 kr.</div>
+                <input type="checkbox" id="addon_blog_posts" name="addon_blog_posts" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <!-- SEO -->
+              <div class="addon-item" id="ai_seo" onclick="toggleAddon('addon_seo','ai_seo')">
+                <div class="addon-check" id="ac_seo"></div>
+                <div class="addon-info">
+                  <div class="addon-name">SEO basis</div>
+                  <div class="addon-desc">On-page SEO, metatitler, beskrivelser og optimeret struktur</div>
+                </div>
+                <div class="addon-price">+1.000 kr.</div>
+                <input type="checkbox" id="addon_seo" name="addon_seo" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <!-- Testimonials -->
+              <div class="addon-item" id="ai_testimonials" onclick="toggleAddon('addon_testimonials','ai_testimonials')">
+                <div class="addon-check" id="ac_testimonials"></div>
+                <div class="addon-info">
+                  <div class="addon-name">Kundeudtalelser</div>
+                  <div class="addon-desc">Flot sektion med kundeanmeldelser og testimonials</div>
+                </div>
+                <div class="addon-price">+500 kr.</div>
+                <input type="checkbox" id="addon_testimonials" name="addon_testimonials" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+            </div>
+
+            <hr class="divider" />
+            <p class="section-title">Billeder &amp; video</p>
+            <div class="addon-grid">
+              <!-- Image editing -->
+              <div class="addon-item addon-numeric">
+                <div class="addon-info">
+                  <div class="addon-name">Billedredigering</div>
+                  <div class="addon-desc">Professionel redigering og optimering af dine billeder</div>
+                </div>
+                <div class="addon-counter">
+                  <button type="button" class="counter-btn" onclick="changeCounter('addon_image_editing',-1)">−</button>
+                  <input class="counter-input" type="number" id="addon_image_editing" name="addon_image_editing" value="0" min="0" max="100" oninput="updatePrice()" />
+                  <button type="button" class="counter-btn" onclick="changeCounter('addon_image_editing',1)">+</button>
+                </div>
+                <div class="addon-price">+250 kr./billede</div>
+              </div>
+              <!-- Video editing -->
+              <div class="addon-item addon-numeric">
+                <div class="addon-info">
+                  <div class="addon-name">Videoredigering</div>
+                  <div class="addon-desc">Redigering og optimering af videoer til din hjemmeside</div>
+                </div>
+                <div class="addon-counter">
+                  <button type="button" class="counter-btn" onclick="changeCounter('addon_video_editing',-1)">−</button>
+                  <input class="counter-input" type="number" id="addon_video_editing" name="addon_video_editing" value="0" min="0" max="100" oninput="updatePrice()" />
+                  <button type="button" class="counter-btn" onclick="changeCounter('addon_video_editing',1)">+</button>
+                </div>
+                <div class="addon-price">+500 kr./video</div>
+              </div>
+            </div>
+
+            <hr class="divider" />
+            <p class="section-title">Integrationer</p>
+            <div class="addon-grid">
+              <div class="addon-item" id="ai_social_feed" onclick="toggleAddon('addon_social_feed','ai_social_feed')">
+                <div class="addon-check" id="ac_social_feed"></div>
+                <div class="addon-info"><div class="addon-name">Social media feed</div><div class="addon-desc">Live feed fra Instagram, Facebook eller lignende</div></div>
+                <div class="addon-price">+1.200 kr.</div>
+                <input type="checkbox" id="addon_social_feed" name="addon_social_feed" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <div class="addon-item" id="ai_booking" onclick="toggleAddon('addon_booking','ai_booking')">
+                <div class="addon-check" id="ac_booking"></div>
+                <div class="addon-info"><div class="addon-name">Booking system</div><div class="addon-desc">Online booking og kalenderintegration</div></div>
+                <div class="addon-price">+2.800 kr.</div>
+                <input type="checkbox" id="addon_booking" name="addon_booking" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <div class="addon-item" id="ai_newsletter" onclick="toggleAddon('addon_newsletter','ai_newsletter')">
+                <div class="addon-check" id="ac_newsletter"></div>
+                <div class="addon-info"><div class="addon-name">Nyhedsbrev</div><div class="addon-desc">Tilmeldingsformular og opsætning af e-mail marketing</div></div>
+                <div class="addon-price">+800 kr.</div>
+                <input type="checkbox" id="addon_newsletter" name="addon_newsletter" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <div class="addon-item" id="ai_google_maps" onclick="toggleAddon('addon_google_maps','ai_google_maps')">
+                <div class="addon-check" id="ac_google_maps"></div>
+                <div class="addon-info"><div class="addon-name">Google Maps</div><div class="addon-desc">Interaktivt kort med din virksomheds placering</div></div>
+                <div class="addon-price">+500 kr.</div>
+                <input type="checkbox" id="addon_google_maps" name="addon_google_maps" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <div class="addon-item" id="ai_file_download" onclick="toggleAddon('addon_file_download','ai_file_download')">
+                <div class="addon-check" id="ac_file_download"></div>
+                <div class="addon-info"><div class="addon-name">Fil-download</div><div class="addon-desc">Sektion til download af PDF'er, kataloger og lignende</div></div>
+                <div class="addon-price">+400 kr.</div>
+                <input type="checkbox" id="addon_file_download" name="addon_file_download" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+              <div class="addon-item" id="ai_faq" onclick="toggleAddon('addon_faq','ai_faq')">
+                <div class="addon-check" id="ac_faq"></div>
+                <div class="addon-info"><div class="addon-name">FAQ sektion</div><div class="addon-desc">Struktureret spørgsmål-svar sektion med accordion</div></div>
+                <div class="addon-price">+500 kr.</div>
+                <input type="checkbox" id="addon_faq" name="addon_faq" value="1" style="display:none" onchange="updatePrice()" />
+              </div>
+            </div>
+
+            <hr class="divider" />
+            <div class="form-group">
+              <label class="form-label" for="deadline">Ønsket deadline <span class="required">*</span></label>
+              <select class="form-select" id="deadline" name="deadline" required>
+                <option value="">Vælg tidsramme…</option>
+                <option value="asap">Så hurtigt som muligt</option>
+                <option value="1_maaned">Inden for 1 måned</option>
+                <option value="2_3_maaneder">2–3 måneder</option>
+                <option value="3_6_maaneder">3–6 måneder</option>
+                <option value="fleksibel">Fleksibel</option>
+              </select>
+              <div class="form-error" id="deadlineError">⚠ Vælg venligst en tidsramme</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="comments">Yderligere kommentarer</label>
+              <textarea class="form-textarea" id="comments" name="comments" placeholder="Er der noget vi ikke har spurgt om, men som er vigtigt for dit projekt?"></textarea>
+            </div>
+
+            <div class="info-box">
+              <span class="info-box__icon">💡</span>
+              <span>Alle priser er vejledende og ekskl. moms. Det endelige tilbud vil blive afklaret i dialog med dig.</span>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-next" onclick="nextStep()">Næste →</button>
+          </div>
+        </div>
+
+        <!-- ======= STEP 8: UPLOAD & BEKRÆFTELSE ======= -->
+        <div class="step" data-step="8">
+          <div class="step-header">
+            <div class="step-badge">08</div>
+            <h2>Upload &amp; bekræftelse</h2>
+            <p>Upload evt. filer og gennemgå din forespørgsel, inden du sender.</p>
+          </div>
+          <div class="step-body">
+
+            <!-- File upload -->
+            <div class="form-group">
+              <label class="form-label">Upload filer (valgfrit)</label>
+              <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                <div class="dropzone__icon">📁</div>
+                <div class="dropzone__title">Træk filer hertil eller <span class="dropzone__link">klik for at vælge</span></div>
+                <div class="dropzone__subtitle">JPG eller PNG – maks. 10 MB pr. fil</div>
+              </div>
+              <input type="file" id="fileInput" name="files[]" accept=".jpg,.jpeg,.png" multiple />
+              <div class="file-list" id="fileList"></div>
+            </div>
+
+            <!-- Summary -->
+            <div class="summary-card">
+              <h3>📋 Kontaktinfo</h3>
+              <div class="summary-row"><span class="label">Navn</span><span class="value" id="sum_name">—</span></div>
+              <div class="summary-row"><span class="label">E-mail</span><span class="value" id="sum_email">—</span></div>
+              <div class="summary-row"><span class="label">Telefon</span><span class="value" id="sum_phone">—</span></div>
+              <div class="summary-row"><span class="label">Virksomhed</span><span class="value" id="sum_company">—</span></div>
+            </div>
+
+            <div class="summary-card">
+              <h3>🛠 Projekt</h3>
+              <div class="summary-row"><span class="label">Branche</span><span class="value" id="sum_industry">—</span></div>
+              <div class="summary-row"><span class="label">Antal sider</span><span class="value" id="sum_pages">—</span></div>
+              <div class="summary-row"><span class="label">CMS</span><span class="value" id="sum_cms">—</span></div>
+              <div class="summary-row"><span class="label">Deadline</span><span class="value" id="sum_deadline">—</span></div>
+            </div>
+
+            <div class="summary-price-box">
+              <div>
+                <div class="label">Estimeret pris ekskl. moms</div>
+                <div style="font-size:.75rem;color:var(--gray-400);margin-top:2px">Priser starter fra 4.999 kr.</div>
+              </div>
+              <div class="amount" id="summaryPrice">4.999 kr.</div>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-group">
+              <label class="consent-item">
+                <input type="checkbox" id="consent" name="consent" required />
+                <span class="consent-check" id="consentCheck">✓</span>
+                <span class="consent-text">Jeg accepterer, at Færk Webbureau kontakter mig vedrørende min forespørgsel, og at mine oplysninger behandles fortroligt i henhold til dansk lovgivning (GDPR).</span>
+              </label>
+              <div class="form-error" id="consentError">⚠ Du skal acceptere for at fortsætte</div>
+            </div>
+
+            <div class="info-box">
+              <span class="info-box__icon">🔒</span>
+              <span>Dine oplysninger er sikre og deles ikke med tredjepart. Vi kontakter dig inden for 24 timer.</span>
+            </div>
+          </div>
+          <div class="step-footer">
+            <button type="button" class="btn btn-back" onclick="prevStep()">← Tilbage</button>
+            <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()">
+              <span class="btn-text">🚀 Send forespørgsel</span>
+              <span class="btn-spinner"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hidden total price field -->
+        <input type="hidden" id="total_price" name="total_price" value="4999" />
+
+      </form>
+      <!-- ==================== /FORM ==================== -->
+
+    </div><!-- /wizard-card -->
+  </div><!-- /left col -->
+
+  <!-- RIGHT: PRICE BOX -->
+  <aside>
+    <div class="price-box">
+      <div class="price-box__label">Estimeret pris</div>
+      <div class="price-box__amount" id="priceDisplay">4.999 kr.</div>
+      <div class="price-box__note">Priser starter fra 4.999 kr.</div>
+      <div class="price-box__breakdown" id="priceBreakdown">
+        <div class="price-row base">
+          <span>Basispakke</span>
+          <span class="value">4.999 kr.</span>
+        </div>
+        <!-- Dynamic addon rows added here -->
+      </div>
+      <div class="price-box__reassure">
+        🔒 Gratis &amp; uforpligtende<br>Vi vender tilbage inden for 24 timer
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /app-layout -->
+
+<!-- MOBILE PRICE BAR -->
+<div class="price-bar-mobile" id="priceMobile">
+  <div>
+    <div class="price-bar-mobile__label">Estimeret pris</div>
+    <div class="price-bar-mobile__amount" id="priceDisplayMobile">4.999 kr.</div>
+  </div>
+  <div style="font-size:.72rem;color:var(--gray-400);text-align:right">Priser starter<br>fra 4.999 kr.</div>
+</div>
+
+<script>
+/* =====================================================
+   WIZARD STATE
+===================================================== */
+let currentStep = 1;
+const TOTAL_STEPS = 8;
+const BASE_PRICE = 4999;
+let totalPrice = BASE_PRICE;
+let uploadedFiles = [];
+let goingBack = false;
+
+const ADDON_PRICES = {
+  addon_blog_setup:    1000,
+  addon_blog_posts:    1200,
+  addon_seo:           1000,
+  addon_testimonials:   500,
+  addon_social_feed:   1200,
+  addon_booking:       2800,
+  addon_newsletter:     800,
+  addon_google_maps:    500,
+  addon_file_download:  400,
+  addon_faq:            500,
+};
+
+/* =====================================================
+   INIT
+===================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  buildStepDots();
+  updateProgress();
+  loadProgress();
+  updatePrice();
+  initFileUpload();
+  initConsentVisual();
+  // Auto-save on any input
+  document.getElementById('wizardForm').addEventListener('input', saveProgress);
+  document.getElementById('wizardForm').addEventListener('change', saveProgress);
+});
+
+/* =====================================================
+   PROGRESS & DOTS
+===================================================== */
+function buildStepDots() {
+  const container = document.getElementById('stepDots');
+  const labels = ['Kontakt','Virksomhed','Hjemmeside','Omfang','Design','Teknik','Tilkøb','Bekræftelse'];
+  container.innerHTML = '';
+  for (let i = 1; i <= TOTAL_STEPS; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'step-dot' + (i === 1 ? ' active' : '');
+    dot.id = 'dot-' + i;
+    dot.title = labels[i - 1];
+    dot.innerHTML = '<span class="dot-num">' + i + '</span>';
+    container.appendChild(dot);
+  }
+}
+
+function updateProgress() {
+  const pct = Math.round((currentStep / TOTAL_STEPS) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('stepNum').textContent = currentStep;
+  document.getElementById('progressPct').textContent = pct + '%';
+
+  for (let i = 1; i <= TOTAL_STEPS; i++) {
+    const dot = document.getElementById('dot-' + i);
+    dot.className = 'step-dot';
+    if (i < currentStep) dot.classList.add('completed');
+    else if (i === currentStep) dot.classList.add('active');
+  }
+}
+
+/* =====================================================
+   STEP NAVIGATION
+===================================================== */
+function showStep(n, back) {
+  document.querySelectorAll('.step').forEach(s => {
+    s.classList.remove('active', 'slide-back');
+  });
+  const step = document.querySelector('[data-step="' + n + '"]');
+  if (back) step.classList.add('slide-back');
+  step.classList.add('active');
+  updateProgress();
+  hideGlobalAlert();
+}
+
+function nextStep() {
+  if (!validateStep(currentStep)) return;
+  saveProgress();
+  if (currentStep < TOTAL_STEPS) {
+    goingBack = false;
+    currentStep++;
+    showStep(currentStep, false);
+    if (currentStep === 8) populateSummary();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    goingBack = true;
+    currentStep--;
+    showStep(currentStep, true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+/* =====================================================
+   VALIDATION
+===================================================== */
+function validateStep(n) {
+  let valid = true;
+
+  function requireField(id, errMsg) {
+    const el = document.getElementById(id);
+    const err = document.getElementById(id + 'Error');
+    if (!el) return;
+    const val = el.value.trim();
+    if (!val) {
+      if (err) { err.textContent = '⚠ ' + (errMsg || 'Dette felt er påkrævet'); err.classList.add('visible'); }
+      el.classList.add('invalid');
+      valid = false;
+    } else {
+      if (err) err.classList.remove('visible');
+      el.classList.remove('invalid');
+    }
+  }
+
+  function requireEmail(id) {
+    const el = document.getElementById(id);
+    const err = document.getElementById(id + 'Error');
+    if (!el) return;
+    const val = el.value.trim();
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!val || !re.test(val)) {
+      if (err) { err.textContent = '⚠ Indtast en gyldig e-mailadresse'; err.classList.add('visible'); }
+      el.classList.add('invalid');
+      valid = false;
+    } else {
+      if (err) err.classList.remove('visible');
+      el.classList.remove('invalid');
+    }
+  }
+
+  function requireRadio(name, errId) {
+    const checked = document.querySelector('input[name="' + name + '"]:checked');
+    const err = document.getElementById(errId);
+    if (!checked) {
+      if (err) err.classList.add('visible');
+      valid = false;
+    } else {
+      if (err) err.classList.remove('visible');
+    }
+  }
+
+  function requireSelect(id) {
+    requireField(id, 'Vælg venligst et svar');
+  }
+
+  switch (n) {
+    case 1:
+      requireField('name');
+      requireEmail('email');
+      requireField('phone');
+      requireField('company');
+      break;
+    case 2:
+      requireSelect('business_type');
+      requireField('industry');
+      requireField('services');
+      requireField('goal');
+      break;
+    case 3:
+      requireRadio('has_website', 'has_websiteError');
+      break;
+    case 4:
+      requireSelect('num_pages');
+      requireRadio('needs_webshop', 'needs_webshopError');
+      break;
+    case 5:
+      requireRadio('has_logo', 'has_logoError');
+      requireRadio('content_provider', 'content_providerError');
+      break;
+    case 6:
+      requireRadio('has_domain', 'has_domainError');
+      requireRadio('has_hosting', 'has_hostingError');
+      requireSelect('cms_preference');
+      break;
+    case 7:
+      requireSelect('deadline');
+      break;
+    case 8:
+      if (!document.getElementById('consent').checked) {
+        document.getElementById('consentError').classList.add('visible');
+        valid = false;
+      } else {
+        document.getElementById('consentError').classList.remove('visible');
+      }
+      break;
+  }
+
+  if (!valid) {
+    const step = document.querySelector('[data-step="' + n + '"]');
+    const firstInvalid = step.querySelector('.invalid, .form-error.visible');
+    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  return valid;
+}
+
+/* =====================================================
+   CONDITIONAL FIELDS
+===================================================== */
+function toggleWebsiteFields() {
+  const val = document.querySelector('input[name="has_website"]:checked');
+  document.getElementById('websiteGroup').style.display = (val && val.value === 'ja') ? 'block' : 'none';
+}
+
+function toggleDomainField() {
+  const val = document.querySelector('input[name="has_domain"]:checked');
+  document.getElementById('domainNameGroup').style.display = (val && val.value === 'ja') ? 'block' : 'none';
+}
+
+/* =====================================================
+   ADDON TOGGLE
+===================================================== */
+function toggleAddon(checkId, itemId) {
+  const cb = document.getElementById(checkId);
+  const item = document.getElementById(itemId);
+  cb.checked = !cb.checked;
+  item.classList.toggle('selected', cb.checked);
+  updatePrice();
+  saveProgress();
+}
+
+function changeCounter(id, delta) {
+  const el = document.getElementById(id);
+  const val = Math.max(0, (parseInt(el.value) || 0) + delta);
+  el.value = val;
+  updatePrice();
+  saveProgress();
+}
+
+/* =====================================================
+   PRICE CALCULATION
+===================================================== */
+function updatePrice() {
+  let price = BASE_PRICE;
+  const breakdown = [];
+
+  // Numeric addons
+  const extraPages = Math.max(0, parseInt(document.getElementById('addon_extra_pages').value) || 0);
+  if (extraPages > 0) { price += extraPages * 500; breakdown.push({ label: extraPages + ' ekstra side' + (extraPages > 1 ? 'r' : ''), value: extraPages * 500 }); }
+
+  const imgEdit = Math.max(0, parseInt(document.getElementById('addon_image_editing').value) || 0);
+  if (imgEdit > 0) { price += imgEdit * 250; breakdown.push({ label: imgEdit + ' billedredit.', value: imgEdit * 250 }); }
+
+  const vidEdit = Math.max(0, parseInt(document.getElementById('addon_video_editing').value) || 0);
+  if (vidEdit > 0) { price += vidEdit * 500; breakdown.push({ label: vidEdit + ' videoredit.', value: vidEdit * 500 }); }
+
+  // Checkbox addons
+  const addonLabels = {
+    addon_blog_setup:    'Blogopsætning',
+    addon_blog_posts:    '3 blogindlæg',
+    addon_seo:           'SEO basis',
+    addon_testimonials:  'Kundeudtalelser',
+    addon_social_feed:   'Social media feed',
+    addon_booking:       'Booking system',
+    addon_newsletter:    'Nyhedsbrev',
+    addon_google_maps:   'Google Maps',
+    addon_file_download: 'Fil-download',
+    addon_faq:           'FAQ sektion',
+  };
+  Object.entries(ADDON_PRICES).forEach(([id, amt]) => {
+    const el = document.getElementById(id);
+    if (el && el.checked) { price += amt; breakdown.push({ label: addonLabels[id], value: amt }); }
+  });
+
+  totalPrice = price;
+  document.getElementById('total_price').value = price;
+
+  const fmt = formatDKK(price);
+  document.getElementById('priceDisplay').textContent = fmt;
+  document.getElementById('priceDisplayMobile').textContent = fmt;
+  document.getElementById('summaryPrice').textContent = fmt;
+
+  // Update breakdown in price box
+  const bd = document.getElementById('priceBreakdown');
+  bd.innerHTML = '<div class="price-row base"><span>Basispakke</span><span class="value">4.999 kr.</span></div>';
+  breakdown.forEach(function (item) {
+    bd.innerHTML += '<div class="price-row"><span>' + item.label + '</span><span class="value">+' + formatDKK(item.value) + '</span></div>';
+  });
+  if (breakdown.length > 0) {
+    bd.innerHTML += '<hr class="price-box__divider" style="border-color:rgba(255,255,255,.1);margin:8px 0">';
+    bd.innerHTML += '<div class="price-box__total-row"><span>I alt</span><span>' + fmt + '</span></div>';
+  }
+}
+
+function formatDKK(n) {
+  return n.toLocaleString('da-DK') + ' kr.';
+}
+
+/* =====================================================
+   POPULATE SUMMARY (Step 8)
+===================================================== */
+function populateSummary() {
+  function val(id) { const el = document.getElementById(id); return el ? el.value.trim() || '—' : '—'; }
+  function selText(id) {
+    const el = document.getElementById(id);
+    if (!el) return '—';
+    return el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : '—';
+  }
+  document.getElementById('sum_name').textContent    = val('name');
+  document.getElementById('sum_email').textContent   = val('email');
+  document.getElementById('sum_phone').textContent   = val('phone');
+  document.getElementById('sum_company').textContent = val('company');
+  document.getElementById('sum_industry').textContent = val('industry');
+  document.getElementById('sum_pages').textContent   = selText('num_pages');
+  document.getElementById('sum_cms').textContent     = selText('cms_preference');
+  document.getElementById('sum_deadline').textContent = selText('deadline');
+  document.getElementById('summaryPrice').textContent = formatDKK(totalPrice);
+}
+
+/* =====================================================
+   FILE UPLOAD
+===================================================== */
+function initFileUpload() {
+  const dropzone = document.getElementById('dropzone');
+  const input = document.getElementById('fileInput');
+
+  dropzone.addEventListener('dragover', function (e) { e.preventDefault(); dropzone.classList.add('dragover'); });
+  dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('dragover'); });
+  dropzone.addEventListener('drop', function (e) {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  });
+  input.addEventListener('change', function () { handleFiles(input.files); });
+}
+
+function handleFiles(files) {
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (!['jpg', 'jpeg', 'png'].includes(ext)) {
+      alert(file.name + ' er ikke en tilladt filtype. Kun JPG og PNG er tilladt.');
+      continue;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      alert(file.name + ' er for stor. Maksimal filstørrelse er 10 MB.');
+      continue;
+    }
+    uploadedFiles.push(file);
+    renderFileItem(file);
+  }
+}
+
+function renderFileItem(file) {
+  const list = document.getElementById('fileList');
+  const id = 'fi_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+  const item = document.createElement('div');
+  item.className = 'file-item';
+  item.id = id;
+  item.innerHTML =
+    '<span class="file-item__icon">🖼</span>' +
+    '<span class="file-item__name">' + escapeHtml(file.name) + '</span>' +
+    '<span class="file-item__size">' + formatBytes(file.size) + '</span>' +
+    '<button type="button" class="file-item__remove" onclick="removeFile(\'' + id + '\',\'' + escapeHtml(file.name) + '\')">✕</button>';
+  list.appendChild(item);
+}
+
+function removeFile(itemId, fileName) {
+  uploadedFiles = uploadedFiles.filter(function (f) { return f.name !== fileName; });
+  const el = document.getElementById(itemId);
+  if (el) el.remove();
+}
+
+function formatBytes(b) {
+  if (b < 1024) return b + ' B';
+  if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+  return (b / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* =====================================================
+   CONSENT VISUAL
+===================================================== */
+function initConsentVisual() {
+  const cb = document.getElementById('consent');
+  if (!cb) return;
+  cb.addEventListener('change', function () {
+    document.getElementById('consentCheck').textContent = cb.checked ? '✓' : '';
+  });
+}
+
+/* =====================================================
+   AUTO-SAVE & RESTORE (localStorage)
+===================================================== */
+function saveProgress() {
+  try {
+    const data = { step: currentStep };
+    document.querySelectorAll('#wizardForm input, #wizardForm select, #wizardForm textarea').forEach(function (el) {
+      if (!el.name || el.type === 'file') return;
+      if (el.type === 'checkbox') { data[el.id] = el.checked; }
+      else if (el.type === 'radio') { if (el.checked) data['radio_' + el.name] = el.value; }
+      else { data[el.id] = el.value; }
+    });
+    localStorage.setItem('faerk_wizard', JSON.stringify(data));
+  } catch (e) { /* ignore */ }
+}
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem('faerk_wizard');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+
+    document.querySelectorAll('#wizardForm input, #wizardForm select, #wizardForm textarea').forEach(function (el) {
+      if (!el.name || el.type === 'file') return;
+      if (el.type === 'checkbox') {
+        if (data[el.id] !== undefined) {
+          el.checked = data[el.id];
+          // Sync addon visual
+          const item = el.closest('.addon-item');
+          if (item && item.id.startsWith('ai_')) item.classList.toggle('selected', el.checked);
+        }
+      } else if (el.type === 'radio') {
+        if (data['radio_' + el.name] === el.value) el.checked = true;
+      } else {
+        if (data[el.id] !== undefined) el.value = data[el.id];
+      }
+    });
+
+    // Conditional fields
+    toggleWebsiteFields();
+    toggleDomainField();
+
+    if (data.step && data.step > 1) {
+      currentStep = parseInt(data.step);
+      showStep(currentStep, false);
+    }
+  } catch (e) { /* ignore */ }
+}
+
+/* =====================================================
+   FORM SUBMISSION
+===================================================== */
+async function submitForm() {
+  if (!validateStep(8)) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  hideGlobalAlert();
+
+  const formData = new FormData();
+
+  // Collect all non-file fields
+  document.querySelectorAll('#wizardForm input, #wizardForm select, #wizardForm textarea').forEach(function (el) {
+    if (!el.name || el.type === 'file') return;
+    if (el.type === 'checkbox') { if (el.checked) formData.append(el.name, el.value || '1'); }
+    else if (el.type === 'radio') { if (el.checked) formData.append(el.name, el.value); }
+    else { formData.append(el.name, el.value); }
+  });
+
+  // Overwrite total price
+  formData.set('total_price', totalPrice);
+
+  // Attach uploaded files
+  uploadedFiles.forEach(function (file) {
+    formData.append('files[]', file, file.name);
+  });
+
+  try {
+    const resp = await fetch('process.php', { method: 'POST', body: formData });
+    let result;
+    try { result = await resp.json(); } catch (e) { result = { success: false, message: 'Ukendt serverfejl.' }; }
+
+    if (result.success) {
+      localStorage.removeItem('faerk_wizard');
+      document.getElementById('appLayout').style.display = 'none';
+      document.getElementById('priceMobile').style.display = 'none';
+      document.getElementById('successScreen').classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      showGlobalAlert(result.message || 'Der opstod en fejl. Prøv igen eller kontakt os på kontakt@faerkwebbureau.dk');
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  } catch (err) {
+    showGlobalAlert('Forbindelsesfejl. Tjek din internetforbindelse og prøv igen.');
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+}
+
+/* =====================================================
+   ALERTS
+===================================================== */
+function showGlobalAlert(msg) {
+  const el = document.getElementById('globalAlert');
+  el.textContent = '⚠ ' + msg;
+  el.classList.add('visible');
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function hideGlobalAlert() {
+  document.getElementById('globalAlert').classList.remove('visible');
+}
+</script>
+</body>
+</html>
