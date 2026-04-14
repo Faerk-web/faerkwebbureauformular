@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Få et tilbud – Færk Webbureau</title>
+  <meta name="description" content="Udfyld vores formular og få et skræddersyet tilbud på din nye hjemmeside fra Færk Webbureau." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="https://faerkwebbureau.dk" class="logo" aria-label="Færk Webbureau">
+        <span class="logo-badge">F</span>
+        <span>Færk Webbureau</span>
+      </a>
+      <span class="header-tag">✨ Gratis tilbud</span>
+    </div>
+  </header>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Få et skræddersyet<br>tilbud på din hjemmeside</h1>
+      <p>Udfyld formularen nedenfor – det tager ca. 5 minutter,<br class="hide-sm"> og vi vender tilbage inden for 24 timer.</p>
+      <div class="hero-stats">
+        <div class="stat"><strong>100+</strong><span>Projekter leveret</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>24 t</strong><span>Svartid</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>4.999 kr.</strong><span>Priser fra</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main ──────────────────────────────────────────────────────── -->
+  <main class="main">
+    <div class="container">
+      <div class="form-layout">
+
+        <!-- Wizard -->
+        <div class="wizard-card" id="wizard-card">
+
+          <!-- Progress -->
+          <div class="progress-section">
+            <div class="progress-header">
+              <div>
+                <span class="step-label">Trin <span id="current-step-num">1</span> af 8</span>
+                <span class="step-name" id="step-name">Kontaktinfo</span>
+              </div>
+              <span class="step-pct" id="step-pct">13%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progress-fill" style="width:12.5%"></div>
+            </div>
+            <div class="step-dots" role="list" aria-label="Trin-oversigt">
+              <button class="step-dot active" data-step="1" type="button" title="Trin 1: Kontaktinfo">1</button>
+              <button class="step-dot" data-step="2" type="button" title="Trin 2: Om virksomheden">2</button>
+              <button class="step-dot" data-step="3" type="button" title="Trin 3: Nuværende hjemmeside">3</button>
+              <button class="step-dot" data-step="4" type="button" title="Trin 4: Omfang & funktioner">4</button>
+              <button class="step-dot" data-step="5" type="button" title="Trin 5: Design & indhold">5</button>
+              <button class="step-dot" data-step="6" type="button" title="Trin 6: Teknik & drift">6</button>
+              <button class="step-dot" data-step="7" type="button" title="Trin 7: Tilkøb & deadline">7</button>
+              <button class="step-dot" data-step="8" type="button" title="Trin 8: Upload & bekræftelse">8</button>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form id="wizard-form" novalidate>
+
+            <!-- ─── STEP 1: Kontaktinfo ─────────────────────────── -->
+            <div class="step-pane" data-step="1">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">👤</div>
+                <h2>Kontaktinfo</h2>
+                <p>Lad os starte med dine kontaktoplysninger, så vi kan komme i kontakt med dig.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="navn" class="lbl-required">Dit fulde navn</label>
+                <input type="text" id="navn" name="navn" placeholder="f.eks. Peter Hansen" autocomplete="name" />
+                <span class="field-err" id="err-navn" role="alert"></span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email" class="lbl-required">Email</label>
+                  <input type="email" id="email" name="email" placeholder="din@email.dk" autocomplete="email" />
+                  <span class="field-err" id="err-email" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="telefon" class="lbl-required">Telefon</label>
+                  <input type="tel" id="telefon" name="telefon" placeholder="12 34 56 78" autocomplete="tel" />
+                  <span class="field-err" id="err-telefon" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="virksomhed">Virksomhedsnavn <span class="opt">(valgfrit)</span></label>
+                <input type="text" id="virksomhed" name="virksomhed" placeholder="f.eks. Hansen & Sønner ApS" autocomplete="organization" />
+              </div>
+
+              <div class="reassurance">
+                <span aria-hidden="true">🔒</span>
+                <span>Dine oplysninger behandles fortroligt og deles ikke med tredjepart.</span>
+              </div>
+            </div>
+
+            <!-- ─── STEP 2: Om virksomheden ───────────────────────── -->
+            <div class="step-pane hidden" data-step="2">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">🏢</div>
+                <h2>Om virksomheden</h2>
+                <p>Fortæl os lidt om din virksomhed, så vi kan skræddersy den perfekte løsning.</p>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="branche" class="lbl-required">Branche / Sektor</label>
+                  <select id="branche" name="branche">
+                    <option value="">Vælg branche…</option>
+                    <option>Detailhandel</option>
+                    <option>Restaurant &amp; Café</option>
+                    <option>Håndværk &amp; Byggeri</option>
+                    <option>Sundhed &amp; Velvære</option>
+                    <option>Konsulentvirksomhed</option>
+                    <option>IT &amp; Teknologi</option>
+                    <option>Finans &amp; Forsikring</option>
+                    <option>Ejendomsmægler</option>
+                    <option>Transport &amp; Logistik</option>
+                    <option>Uddannelse</option>
+                    <option>Non-profit</option>
+                    <option>Kreativ &amp; Medie</option>
+                    <option>Anden branche</option>
+                  </select>
+                  <span class="field-err" id="err-branche" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="storrelse" class="lbl-required">Virksomhedsstørrelse</label>
+                  <select id="storrelse" name="storrelse">
+                    <option value="">Vælg størrelse…</option>
+                    <option>Soloselvstændig (1 person)</option>
+                    <option>Lille (2–10 ansatte)</option>
+                    <option>Mellemstor (11–50 ansatte)</option>
+                    <option>Stor (50+ ansatte)</option>
+                  </select>
+                  <span class="field-err" id="err-storrelse" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="maalgruppe" class="lbl-required">Hvem er din målgruppe?</label>
+                <textarea id="maalgruppe" name="maalgruppe" rows="3" placeholder="f.eks. Privatpersoner i alderen 30–60 år, der søger kvalitets håndværksydelser i Aarhus-området"></textarea>
+                <span class="field-err" id="err-maalgruppe" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="maal" class="lbl-required">Hvad er dit primære mål med hjemmesiden?</label>
+                <textarea id="maal" name="maal" rows="3" placeholder="f.eks. Tiltrække nye kunder, fremvise vores portfolio og øge troværdighed online"></textarea>
+                <span class="field-err" id="err-maal" role="alert"></span>
+              </div>
+            </div>
+
+            <!-- ─── STEP 3: Nuværende hjemmeside ─────────────────── -->
+            <div class="step-pane hidden" data-step="3">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">🌐</div>
+                <h2>Nuværende hjemmeside</h2>
+                <p>Har du allerede en hjemmeside? Det hjælper os at forstå udgangspunktet.</p>
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Har du en nuværende hjemmeside?</label>
+                <div class="radio-group">
+                  <label class="radio-card">
+                    <input type="radio" name="harHjemmeside" value="ja" />
+                    <div class="rc-inner"><span class="rc-icon">✅</span><span>Ja, jeg har en hjemmeside</span></div>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="harHjemmeside" value="nej" />
+                    <div class="rc-inner"><span class="rc-icon">🆕</span><span>Nej, første gang</span></div>
+                  </label>
+                </div>
+                <span class="field-err" id="err-harHjemmeside" role="alert"></span>
+              </div>
+
+              <div id="existing-site-fields" class="hidden">
+                <div class="form-group">
+                  <label for="hjemmesideUrl">Nuværende URL</label>
+                  <input type="url" id="hjemmesideUrl" name="hjemmesideUrl" placeholder="https://dinhjemmeside.dk" />
+                </div>
+                <div class="form-group">
+                  <label for="hvadFungerer">Hvad fungerer godt?</label>
+                  <textarea id="hvadFungerer" name="hvadFungerer" rows="2" placeholder="f.eks. Designet er pænt, men forældet"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="hvadForbedres">Hvad ønsker du at forbedre?</label>
+                  <textarea id="hvadForbedres" name="hvadForbedres" rows="2" placeholder="f.eks. Mobilvisning, hastighed, moderne design"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- ─── STEP 4: Omfang & funktioner ─────────────────── -->
+            <div class="step-pane hidden" data-step="4">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">⚙️</div>
+                <h2>Omfang &amp; funktioner</h2>
+                <p>Hvad slags hjemmeside har du brug for, og hvilke funktioner er vigtige for dig?</p>
+              </div>
+
+              <div class="form-group">
+                <label for="hjemmesideType" class="lbl-required">Hvilken type hjemmeside ønsker du?</label>
+                <select id="hjemmesideType" name="hjemmesideType">
+                  <option value="">Vælg type…</option>
+                  <option>Præsentationshjemmeside (virksomhedsside)</option>
+                  <option>Webshop / E-commerce</option>
+                  <option>Portfolio / Visningsside</option>
+                  <option>Blog / Nyhedsside</option>
+                  <option>Landingsside (kampagnesite)</option>
+                  <option>Booking / Reservationsside</option>
+                  <option>Kombination af flere</option>
+                </select>
+                <span class="field-err" id="err-hjemmesideType" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="antalSider" class="lbl-required">Anslået antal undersider</label>
+                <input type="number" id="antalSider" name="antalSider" min="1" max="500" placeholder="f.eks. 5" />
+                <span class="field-hint">Tæl forside, om os, kontakt osv.</span>
+                <span class="field-err" id="err-antalSider" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label>Ønskede funktioner <span class="opt">(vælg alle der passer)</span></label>
+                <div class="checkbox-grid">
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Kontaktformular" /><span>📧 Kontaktformular</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Billedgalleri" /><span>🖼️ Billedgalleri</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Webshop" /><span>🛒 Webshop</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Blog" /><span>📝 Blog</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Søgefunktion" /><span>🔍 Søgefunktion</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Flersproget" /><span>🌍 Flersproget</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Popup / Banner" /><span>💬 Popup / Banner</span></label>
+                  <label class="cb-card"><input type="checkbox" name="funktioner" value="Cookie-banner" /><span>🍪 Cookie-banner</span></label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ─── STEP 5: Design & indhold ─────────────────────── -->
+            <div class="step-pane hidden" data-step="5">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">🎨</div>
+                <h2>Design &amp; indhold</h2>
+                <p>Hjælp os med at forstå dit ønskede design og dit indholdsbehov.</p>
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Hvilken designstil foretrækker du?</label>
+                <div class="style-cards">
+                  <label class="style-card">
+                    <input type="radio" name="designstil" value="Minimalistisk" />
+                    <div class="sc-preview sc-minimal"></div>
+                    <strong>Minimalistisk</strong>
+                    <small>Rent &amp; enkelt</small>
+                  </label>
+                  <label class="style-card">
+                    <input type="radio" name="designstil" value="Moderne &amp; dristig" />
+                    <div class="sc-preview sc-moderne"></div>
+                    <strong>Moderne &amp; dristig</strong>
+                    <small>Fed &amp; markant</small>
+                  </label>
+                  <label class="style-card">
+                    <input type="radio" name="designstil" value="Klassisk &amp; professionel" />
+                    <div class="sc-preview sc-klassisk"></div>
+                    <strong>Klassisk</strong>
+                    <small>Seriøs &amp; troværdig</small>
+                  </label>
+                  <label class="style-card">
+                    <input type="radio" name="designstil" value="Kreativ &amp; farverig" />
+                    <div class="sc-preview sc-kreativ"></div>
+                    <strong>Kreativ</strong>
+                    <small>Farverig &amp; unik</small>
+                  </label>
+                </div>
+                <span class="field-err" id="err-designstil" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="farver">Farveønsker <span class="opt">(valgfrit)</span></label>
+                <input type="text" id="farver" name="farver" placeholder="f.eks. Blå og hvid, eller 'match vores logo'" />
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Har du et eksisterende logo?</label>
+                <div class="radio-group radio-group--3">
+                  <label class="radio-card"><input type="radio" name="harLogo" value="Ja, jeg har et logo" /><div class="rc-inner"><span class="rc-icon">✅</span><span>Ja, jeg har et logo</span></div></label>
+                  <label class="radio-card"><input type="radio" name="harLogo" value="Nej, jeg mangler et logo" /><div class="rc-inner"><span class="rc-icon">🎨</span><span>Nej, mangler logo</span></div></label>
+                  <label class="radio-card"><input type="radio" name="harLogo" value="Logo skal opdateres" /><div class="rc-inner"><span class="rc-icon">🔄</span><span>Logo skal opdateres</span></div></label>
+                </div>
+                <span class="field-err" id="err-harLogo" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Er dit indhold (tekst &amp; billeder) klar?</label>
+                <div class="radio-group radio-group--3">
+                  <label class="radio-card"><input type="radio" name="indholdKlar" value="Ja, alt indhold er klar" /><div class="rc-inner"><span class="rc-icon">✅</span><span>Ja, alt er klar</span></div></label>
+                  <label class="radio-card"><input type="radio" name="indholdKlar" value="Delvis – noget mangler" /><div class="rc-inner"><span class="rc-icon">⚠️</span><span>Delvis klar</span></div></label>
+                  <label class="radio-card"><input type="radio" name="indholdKlar" value="Nej, brug for hjælp til indhold" /><div class="rc-inner"><span class="rc-icon">✍️</span><span>Nej, brug for hjælp</span></div></label>
+                </div>
+                <span class="field-err" id="err-indholdKlar" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="inspirationsUrls">Hjemmesider du finder inspirerende <span class="opt">(valgfrit)</span></label>
+                <textarea id="inspirationsUrls" name="inspirationsUrls" rows="2" placeholder="f.eks. apple.com, notion.so – hvad kan du lide ved disse?"></textarea>
+              </div>
+            </div>
+
+            <!-- ─── STEP 6: Teknik & drift ───────────────────────── -->
+            <div class="step-pane hidden" data-step="6">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">🔧</div>
+                <h2>Teknik &amp; drift</h2>
+                <p>Lad os afklare de tekniske detaljer for din nye hjemmeside.</p>
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Domæne (web-adresse)</label>
+                <div class="radio-group radio-group--3">
+                  <label class="radio-card"><input type="radio" name="domain" value="Nyt domæne – Færk hjælper" /><div class="rc-inner"><span class="rc-icon">🆕</span><span>Nyt domæne – Færk hjælper</span></div></label>
+                  <label class="radio-card"><input type="radio" name="domain" value="Jeg har allerede et domæne" /><div class="rc-inner"><span class="rc-icon">🔗</span><span>Jeg har et domæne</span></div></label>
+                  <label class="radio-card"><input type="radio" name="domain" value="Usikker – behøver rådgivning" /><div class="rc-inner"><span class="rc-icon">❓</span><span>Usikker</span></div></label>
+                </div>
+                <span class="field-err" id="err-domain" role="alert"></span>
+              </div>
+
+              <div class="form-group hidden" id="domain-name-group">
+                <label for="domainNavn">Domænenavn</label>
+                <input type="text" id="domainNavn" name="domainNavn" placeholder="f.eks. minvirksomhed.dk" />
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Hosting</label>
+                <div class="radio-group radio-group--3">
+                  <label class="radio-card"><input type="radio" name="hosting" value="Færk håndterer hosting" /><div class="rc-inner"><span class="rc-icon">☁️</span><span>Færk håndterer hosting</span></div></label>
+                  <label class="radio-card"><input type="radio" name="hosting" value="Jeg har egen hosting" /><div class="rc-inner"><span class="rc-icon">🖥️</span><span>Egen hosting</span></div></label>
+                  <label class="radio-card"><input type="radio" name="hosting" value="Usikker – behøver rådgivning" /><div class="rc-inner"><span class="rc-icon">❓</span><span>Usikker</span></div></label>
+                </div>
+                <span class="field-err" id="err-hosting" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">CMS (Indholdsstyringssystem)</label>
+                <div class="radio-group">
+                  <label class="radio-card"><input type="radio" name="cms" value="WordPress" /><div class="rc-inner"><span class="rc-icon">🔵</span><span>WordPress</span></div></label>
+                  <label class="radio-card"><input type="radio" name="cms" value="Webflow" /><div class="rc-inner"><span class="rc-icon">🌊</span><span>Webflow</span></div></label>
+                  <label class="radio-card"><input type="radio" name="cms" value="Ingen præference" /><div class="rc-inner"><span class="rc-icon">🤷</span><span>Ingen præference</span></div></label>
+                  <label class="radio-card"><input type="radio" name="cms" value="Andet CMS" /><div class="rc-inner"><span class="rc-icon">⚙️</span><span>Andet</span></div></label>
+                </div>
+                <span class="field-err" id="err-cms" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="lbl-required">Vedligeholdelse &amp; opdateringer</label>
+                <div class="radio-group radio-group--3">
+                  <label class="radio-card"><input type="radio" name="vedligeholdelse" value="Månedlig aftale med Færk" /><div class="rc-inner"><span class="rc-icon">🛡️</span><span>Månedlig aftale med Færk</span></div></label>
+                  <label class="radio-card"><input type="radio" name="vedligeholdelse" value="Vi klarer det selv" /><div class="rc-inner"><span class="rc-icon">💪</span><span>Vi klarer det selv</span></div></label>
+                  <label class="radio-card"><input type="radio" name="vedligeholdelse" value="Usikker – vil drøfte det" /><div class="rc-inner"><span class="rc-icon">❓</span><span>Usikker</span></div></label>
+                </div>
+                <span class="field-err" id="err-vedligeholdelse" role="alert"></span>
+              </div>
+            </div>
+
+            <!-- ─── STEP 7: Tilkøb & deadline ─────────────────────── -->
+            <div class="step-pane hidden" data-step="7">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">🛒</div>
+                <h2>Tilkøb &amp; deadline</h2>
+                <p>Vælg eventuelle tilkøb og fortæl os om din ønskede tidsplan.</p>
+              </div>
+
+              <!-- Indhold & tekst -->
+              <h3 class="addons-cat">📄 Indhold &amp; tekst</h3>
+
+              <div class="addon-row addon-numeric">
+                <div class="addon-info">
+                  <span class="addon-name">Ekstra sider</span>
+                  <span class="addon-price">+500 kr. pr. side</span>
+                </div>
+                <div class="qty-ctrl">
+                  <button type="button" class="qty-btn" data-target="ekstraSider" data-action="minus" aria-label="Fjern">−</button>
+                  <input type="number" id="ekstraSider" name="ekstraSider" class="addon-qty" value="0" min="0" max="50" data-price="500" data-label="Ekstra sider" aria-label="Ekstra sider antal" />
+                  <button type="button" class="qty-btn" data-target="ekstraSider" data-action="plus" aria-label="Tilføj">+</button>
+                </div>
+              </div>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="blogopsaetning" id="blogopsaetning" data-price="1000" data-label="Blogopsætning" />
+                <div class="addon-info"><span class="addon-name">Blogopsætning</span><span class="addon-price">+1.000 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="blogindlaeg" id="blogindlaeg" data-price="1200" data-label="3 blogindlæg" />
+                <div class="addon-info"><span class="addon-name">3 blogindlæg (professionelt skrevet)</span><span class="addon-price">+1.200 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="seoBasis" id="seoBasis" data-price="1000" data-label="SEO basis" />
+                <div class="addon-info"><span class="addon-name">SEO basis (søgeoptimering)</span><span class="addon-price">+1.000 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="kundeudtalelser" id="kundeudtalelser" data-price="500" data-label="Kundeudtalelser" />
+                <div class="addon-info"><span class="addon-name">Kundeudtalelser / Anmeldelser-sektion</span><span class="addon-price">+500 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <!-- Billeder & video -->
+              <h3 class="addons-cat">🖼️ Billeder &amp; video</h3>
+
+              <div class="addon-row addon-numeric">
+                <div class="addon-info">
+                  <span class="addon-name">Billedredigering</span>
+                  <span class="addon-price">+250 kr. pr. billede</span>
+                </div>
+                <div class="qty-ctrl">
+                  <button type="button" class="qty-btn" data-target="billedredigering" data-action="minus" aria-label="Fjern">−</button>
+                  <input type="number" id="billedredigering" name="billedredigering" class="addon-qty" value="0" min="0" max="100" data-price="250" data-label="Billedredigering" aria-label="Billedredigering antal" />
+                  <button type="button" class="qty-btn" data-target="billedredigering" data-action="plus" aria-label="Tilføj">+</button>
+                </div>
+              </div>
+
+              <div class="addon-row addon-numeric">
+                <div class="addon-info">
+                  <span class="addon-name">Videoredigering</span>
+                  <span class="addon-price">+500 kr. pr. video</span>
+                </div>
+                <div class="qty-ctrl">
+                  <button type="button" class="qty-btn" data-target="videoredigering" data-action="minus" aria-label="Fjern">−</button>
+                  <input type="number" id="videoredigering" name="videoredigering" class="addon-qty" value="0" min="0" max="50" data-price="500" data-label="Videoredigering" aria-label="Videoredigering antal" />
+                  <button type="button" class="qty-btn" data-target="videoredigering" data-action="plus" aria-label="Tilføj">+</button>
+                </div>
+              </div>
+
+              <!-- Integrationer -->
+              <h3 class="addons-cat">🔌 Integrationer</h3>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="socialMediaFeed" id="socialMediaFeed" data-price="1200" data-label="Social media feed" />
+                <div class="addon-info"><span class="addon-name">Social media feed (Instagram/Facebook)</span><span class="addon-price">+1.200 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="bookingSystem" id="bookingSystem" data-price="2800" data-label="Booking system" />
+                <div class="addon-info"><span class="addon-name">Booking system</span><span class="addon-price">+2.800 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="nyhedsbrev" id="nyhedsbrev" data-price="800" data-label="Nyhedsbrev" />
+                <div class="addon-info"><span class="addon-name">Nyhedsbrev / Email marketing integration</span><span class="addon-price">+800 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="googleMaps" id="googleMaps" data-price="500" data-label="Google Maps" />
+                <div class="addon-info"><span class="addon-name">Google Maps integration</span><span class="addon-price">+500 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="filDownload" id="filDownload" data-price="400" data-label="Fil-download" />
+                <div class="addon-info"><span class="addon-name">Fil-download sektion (PDF, brochurer mv.)</span><span class="addon-price">+400 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <label class="addon-row addon-cb">
+                <input type="checkbox" name="faqSektion" id="faqSektion" data-price="500" data-label="FAQ sektion" />
+                <div class="addon-info"><span class="addon-name">FAQ sektion (ofte stillede spørgsmål)</span><span class="addon-price">+500 kr.</span></div>
+                <span class="cb-check" aria-hidden="true">✓</span>
+              </label>
+
+              <div class="form-group" style="margin-top:28px">
+                <label for="deadline">Ønsket deadline / lanceringsdato <span class="opt">(valgfrit)</span></label>
+                <input type="date" id="deadline" name="deadline" />
+                <span class="field-hint">Hvornår ønsker du, at hjemmesiden er klar?</span>
+              </div>
+            </div>
+
+            <!-- ─── STEP 8: Upload & bekræftelse ─────────────────── -->
+            <div class="step-pane hidden" data-step="8">
+              <div class="step-header">
+                <div class="step-icon" aria-hidden="true">📋</div>
+                <h2>Upload &amp; bekræftelse</h2>
+                <p>Upload eventuelle filer og gennemgå din forespørgsel, inden du sender.</p>
+              </div>
+
+              <!-- File Upload -->
+              <div class="form-group">
+                <label>Filer (logo, billeder, inspiration) <span class="opt">(valgfrit)</span></label>
+                <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Træk filer hertil eller klik for at vælge">
+                  <div class="dz-inner">
+                    <div class="dz-icon" aria-hidden="true">📁</div>
+                    <p class="dz-text">Træk &amp; slip filer her</p>
+                    <button type="button" class="btn-dz-pick" id="upload-trigger">Vælg filer</button>
+                    <input type="file" id="filer" name="filer" multiple accept=".jpg,.jpeg,.png" style="display:none" aria-hidden="true" />
+                    <p class="dz-hint">JPG og PNG kun &middot; Maks. 10 MB pr. fil</p>
+                  </div>
+                </div>
+                <div id="file-list" class="file-list" aria-live="polite"></div>
+              </div>
+
+              <!-- Comments -->
+              <div class="form-group">
+                <label for="kommentarer">Yderligere kommentarer <span class="opt">(valgfrit)</span></label>
+                <textarea id="kommentarer" name="kommentarer" rows="4" placeholder="Særlige ønsker, detaljer eller spørgsmål til os?"></textarea>
+              </div>
+
+              <!-- Summary -->
+              <div class="summary-box">
+                <h3>📋 Din opsummering</h3>
+                <div id="summary-content" class="summary-content"></div>
+              </div>
+
+              <!-- Terms -->
+              <div class="form-group">
+                <label class="terms-label">
+                  <input type="checkbox" id="accepterBetingelser" name="accepterBetingelser" />
+                  <span>Jeg accepterer, at Færk Webbureau må kontakte mig vedrørende min forespørgsel. Læs vores <a href="https://faerkwebbureau.dk/privatlivspolitik" target="_blank" rel="noopener">privatlivspolitik</a>.</span>
+                </label>
+                <span class="field-err" id="err-accepterBetingelser" role="alert"></span>
+              </div>
+            </div>
+
+          </form><!-- /wizard-form -->
+
+          <!-- Navigation -->
+          <div class="wizard-nav">
+            <button type="button" class="btn-secondary hidden" id="btn-prev">← Tilbage</button>
+            <div class="nav-space"></div>
+            <button type="button" class="btn-primary" id="btn-next">Næste trin →</button>
+            <button type="button" class="btn-primary btn-submit hidden" id="btn-submit">
+              <span class="btn-label">✉️ Send forespørgsel</span>
+              <span class="btn-spinner hidden" aria-hidden="true"></span>
+            </button>
+          </div>
+
+        </div><!-- /wizard-card -->
+
+        <!-- Price Sidebar -->
+        <aside class="price-sidebar" aria-label="Estimeret pris">
+          <div class="price-card" id="price-card">
+            <div class="pc-header">
+              <span aria-hidden="true">💰</span>
+              <h3>Estimeret pris</h3>
+            </div>
+            <div class="pc-price">
+              <span id="price-amount">4.999</span> kr.
+            </div>
+            <p class="pc-from">Priser starter fra 4.999 kr.</p>
+            <div class="pc-breakdown" id="price-breakdown">
+              <div class="bd-row bd-base">
+                <span>Basispris</span><span>4.999 kr.</span>
+              </div>
+            </div>
+            <p class="pc-note">Dette er en estimeret pris.<br>Endelig pris aftales ved møde.</p>
+          </div>
+        </aside>
+
+      </div><!-- /form-layout -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- ── Mobile price bar ───────────────────────────────────────────── -->
+  <div class="mobile-price-bar" id="mobile-price-bar" aria-live="polite" aria-label="Estimeret pris">
+    <span class="mpb-label">Estimeret pris:</span>
+    <span class="mpb-amount"><span id="mobile-price-amount">4.999</span> kr.</span>
+  </div>
+
+  <!-- ── Success overlay ────────────────────────────────────────────── -->
+  <div class="success-overlay hidden" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-heading">
+    <div class="success-card">
+      <div class="success-circle" aria-hidden="true">
+        <svg class="success-check" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="26" cy="26" r="25" stroke="white" stroke-width="2"/>
+          <path d="M14 27l8 8L38 17" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 id="success-heading">Tak for din forespørgsel!</h2>
+      <p>Vi har modtaget dine oplysninger og vender tilbage inden for 24 timer.</p>
+      <div class="success-details">
+        <div class="sd-row"><span aria-hidden="true">📧</span><span>En bekræftelse er sendt til din email</span></div>
+        <div class="sd-row"><span aria-hidden="true">⏰</span><span>Vi svarer inden for 24 timer</span></div>
+        <div class="sd-row"><span aria-hidden="true">📞</span><span>Vi kontakter dig på den angivne email/telefon</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Error toast ────────────────────────────────────────────────── -->
+  <div class="toast hidden" id="toast-error" role="alert" aria-live="assertive">
+    <span aria-hidden="true">⚠️</span>
+    <span id="toast-msg">Der opstod en fejl. Prøv venligst igen.</span>
+  </div>
+
+  <script src="js/wizard.js"></script>
+</body>
+</html>
